@@ -1,6 +1,7 @@
 #root{
   --sub-color: #646669;
   --bg-color: #323437;
+  --highlight-color: #d1d0c5;
   color:var(--sub-color);
   background-color: var(--bg-color);
   font-family:'Roboto Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
@@ -25,7 +26,7 @@ footer{
 }
 
 .app--hoverable:hover{
-  color:white;
+  color:var(--highlight-color);
   cursor: pointer;
   transition:color 0.1s;
 }
@@ -33,6 +34,40 @@ footer{
 .app--restart-button{
   transform:scaleX(-1);
   padding: 1rem 3rem;
+}
+
+.app--restart-button::after{
+  content: "Restart Test";
+  background-color:black;
+  position:absolute;
+  transform:scaleX(-1) translateX(50%);
+  white-space:nowrap;
+  padding:.5rem 2rem;
+  border-radius:.25rem;
+  left: 50%;
+  top:75%;
+  opacity:0;
+}
+.app--restart-button:hover::after,.app--restart-button:hover::before {
+  opacity:1;
+  transition:.25s ease-in all;
+  top:85%;
+}
+.app--restart-button:hover::before{
+  top:75%;
+}
+.app--restart-button::before{
+  content:"";
+  position:absolute;
+  top:70%;
+  width: 0; 
+  height: 0; 
+  left:42.5%;
+  border-left: 7.5px solid transparent;
+  border-right: 7.5px solid transparent;
+  
+  border-bottom: 7.5px solid black;
+  opacity: 0;
 }
 
 .app--language{
