@@ -1,0 +1,41 @@
+#root{
+  --sub-color: #646669;
+  --bg-color: #323437;
+  color:var(--sub-color);
+  background-color: var(--bg-color);
+  font-family:'Roboto Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+body{
+  margin:0;
+}
+
+#center{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  flex-flow:column nowrap;
+  height:100dvh;
+  width:100dvw;
+}
+
+footer{
+  position:absolute;
+  bottom:0;
+}
+
+.app--hoverable:hover{
+  color:white;
+  cursor: pointer;
+  transition:color 0.1s;
+}
+
+.app--restart-button{
+  transform:scaleX(-1);
+  padding: 1rem 3rem;
+}
+
+.app--language{
+  gap:5rem;
+  font-size:1.25rem;
+}
