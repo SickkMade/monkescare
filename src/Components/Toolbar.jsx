@@ -8,7 +8,7 @@ import { FaAt } from "react-icons/fa";
 
 function Toolbar() {
   return (
-    <>
+    <section id="toolbar">
     <div className="app--hoverable"><FaAt />punctuation</div>
     <div className="app--hoverable"><FaHashtag/>numbers</div>
     <div className="app--hoverable toolbar--line-left"><FaClock/>time</div>
@@ -17,7 +17,7 @@ function Toolbar() {
     <div className="app--hoverable"><FaMountain/>zen</div>
     <div className="app--hoverable"><FaWrench/>custom</div>
     <div className="app--hoverable toolbar--line-left">change</div>
-    </>
+    </section>
   )
 }
 

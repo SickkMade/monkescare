@@ -47,6 +47,7 @@ footer{
   left: 50%;
   top:75%;
   opacity:0;
+  pointer-events: none;
 }
 .app--restart-button:hover::after,.app--restart-button:hover::before {
   opacity:1;
@@ -58,6 +59,7 @@ footer{
 }
 .app--restart-button::before{
   content:"";
+  pointer-events: none;
   position:absolute;
   top:70%;
   width: 0; 
@@ -73,4 +75,16 @@ footer{
 .app--language{
   gap:5rem;
   font-size:1.25rem;
+}
+#toolbar{
+  display:flex;
+  flex-flow:row nowrap;
+  gap:1rem;
+}
+#toolbar > div > *{
+  margin-right: .5rem;
+}
+.toolbar--line-left{
+  border-left:.25rem double var(--sub-color);
+  padding-left:1rem;
 }
