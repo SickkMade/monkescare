@@ -141,7 +141,7 @@ function MainText() {
                     id="app--video"
                     onEnded={handleVideoEnd}
                 >
-                    <source src="/video1.mp4" type="video/mp4" />
+                    <source src="https://github.com/sickkmade/sickkmade.github.io/raw/main/video1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>}
