@@ -113,6 +113,9 @@ footer{
   overflow-y:hidden;
   pointer-events: none;
  }
+.word--incorrect__underline{
+  border-bottom: 3px var(--incorrect-letter-color) solid;
+}
 .word--char.typed{
   color:var(--correct-letter-color);
 }

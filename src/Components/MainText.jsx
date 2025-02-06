@@ -13,6 +13,7 @@ function MainText() {
     const [cursorIndex, setCursorIndex] = useState(0)
     const [isShowTime, setIsShowTime] = useState(false);
 
+    const lastWordsIndex = useRef([]) // pop and push for inde of prev words
     const textContainerRef = useRef(null);
     const videoRef = useRef(null);
 
@@ -64,14 +65,20 @@ function MainText() {
             //IVE PLAYED THESE GAMES BEFORE
 
             if (e.key === 'Backspace') {
+                if(letterIndex.current === 0 && lastWordsIndex.current.length > 0){
+                    wordIndex.current-=1
+                    letterIndex.current = lastWordsIndex.current.pop()+1;
+                }
                 if (overflow > 0) displayedWord.pop();
                 else if (letterIndex.current > 0) currentWord[--letterIndex.current] = 0;
-                return
+                return 
             }
 
-            if (e.key === ' ' && letterIndex.current === currentWord.length) {
+            if (e.key === ' ' && letterIndex.current > 0) {
+                if(letterIndex.current < displayedWord.length) lastWordsIndex.current.push(letterIndex.current)
                 wordIndex.current++;
                 letterIndex.current = 0;
+                handleCursor(0)
                 return;
             }
 
