@@ -11,6 +11,10 @@ function MainText() {
     const letterIndex = useRef(0)
     const correctList = useRef([])
     const [cursorIndex, setCursorIndex] = useState(0)
+    const [isShowTime, setIsShowTime] = useState(false);
+
+    const containerRef = useRef(null);
+    const videoRef = useRef(null);
 
     const CreateAndSetNewWordList = () => {
         words.current = []
@@ -20,7 +24,7 @@ function MainText() {
             words.current.push(word.split("")) //push random word 250 times
             correctList.current.push(Array(word.length).fill(0))
         }
-        setCursorIndex(prevValue => prevValue +1); //force reflow is craaaaaaazy
+        setCursorIndex(prevValue => prevValue + 1); //force reflow is craaaaaaazy
     }
 
     const handleCursor = (overflow) => {
@@ -46,14 +50,14 @@ function MainText() {
                 console.error("Correct list is unset");
                 return;
             }
-            setCursorIndex(prevValue => prevValue +1); //force reflow is craaaaaaazy
+            setCursorIndex(prevValue => prevValue + 1); //force reflow is craaaaaaazy
 
             const wordIdx = wordIndex.current;
             const currentWord = correctList.current[wordIdx];
             const displayedWord = words.current[wordIdx];
             const overflow = words.current[wordIndex.current].length - correctList.current[wordIndex.current].length;
             if (overflow < MAXOVERFLOW) handleCursor(overflow);
-            else if(overflow===MAXOVERFLOW && e.key === 'Backspace')handleCursor(overflow);
+            else if (overflow === MAXOVERFLOW && e.key === 'Backspace') handleCursor(overflow);
             //IVE PLAYED THESE GAMES BEFORE
 
             if (e.key === 'Backspace') {
@@ -77,15 +81,50 @@ function MainText() {
 
             currentWord[letterIndex.current] = e.key === displayedWord[letterIndex.current] ? 1 : 2;
             letterIndex.current++;
+
+            if(wordIndex.current > 2){
+                setIsShowTime(true);
+                playFullscreenVideo();
+            }
+
         };
-        
+
         document.addEventListener('keydown', HandleKeyDown)
         return () => document.removeEventListener('keydown', HandleKeyDown)
     }, [cursorIndex])
     useEffect(() => {
         CreateAndSetNewWordList();
-        setCursorIndex(prevValue => prevValue +1); //force reflow is craaaaaaazy
+        setCursorIndex(prevValue => prevValue + 1); //force reflow is craaaaaaazy
     }, [])
+
+    const playFullscreenVideo = async () => {
+        try {
+            if (videoRef.current) {
+                if (videoRef.current.requestFullscreen) {
+                    await videoRef.current.requestFullscreen();
+                } else if (videoRef.current.webkitRequestFullscreen) {
+                    await videoRef.current.webkitRequestFullscreen();
+                } else if (videoRef.current.msRequestFullscreen) {
+                    await videoRef.current.msRequestFullscreen();
+                }
+    
+                await videoRef.current.play();
+            }
+        } catch (error) {
+            console.error('Error playing fullscreen video:', error);
+        }
+    };
+    
+    const handleVideoEnd = async () => {
+        if (document.exitFullscreen) {
+            await document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+            await document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            await document.msExitFullscreen();
+        }
+        window.location.reload();
+    }
 
 
     return (
@@ -96,6 +135,16 @@ function MainText() {
                     <Word word={value} letterCorrectArr={correctList.current[i]} wordIndex={i} key={"word-" + i} />
                 ))}
             </section>
+            {isShowTime && <div ref={containerRef} className={isShowTime ? 'showtime' : ''}>
+                <video
+                    ref={videoRef}
+                    id="app--video"
+                    onEnded={handleVideoEnd}
+                >
+                    <source src="/video1.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>}
         </>
     )
 }
