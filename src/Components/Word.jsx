@@ -22,7 +22,7 @@ function Word({word, letterCorrectArr, wordIndex}) {
   return (
     <span className="maintext--word">
     {word.map((char, i)=>(
-        <span className={`word--char ${SetClass(letterCorrectArr[i])}`} key={'word-'+wordIndex+'char-'+i}>{char}</span>
+        <span className={`word--char ${SetClass(letterCorrectArr[i])}`} id={`id${wordIndex}-${i}`} key={'word-'+wordIndex+'char-'+i}>{char}</span>
     ))}
     </span>
   )

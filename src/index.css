@@ -5,7 +5,10 @@
   --sub-alt-color: #2c2e31;
   color:var(--sub-color);
   background-color: var(--bg-color);
-  font-family:'Roboto Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family:'Roboto Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  --cursor-x: 0px;
+  --cursor-y: 0px;
 }
 
 body{
@@ -115,6 +118,15 @@ footer{
 }
 .word--char.overflow{
   color:darkred;
+}
+#main--cursor{
+  height:5rem;
+  width:1rem;
+  color:yellow;
+  position:absolute;
+  top: var(--cursor-y);
+  left: var(--cursor-x);
+  z-index: 11111;
 }
 
 

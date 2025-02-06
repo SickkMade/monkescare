@@ -1,9 +1,11 @@
 import allWords from '../json/enlish.json'
 import Word from './Word'
+import Cursor from './Cursor';
 import { useEffect, useState, useRef } from 'react'
 
 const MAXOVERFLOW = 10;
 function MainText() {
+    const currentLocation = useRef({x:0,y:0});
     const words = useRef([])
     const wordIndex = useRef(0)
     const letterIndex = useRef(0)
@@ -44,8 +46,11 @@ function MainText() {
                 wordIndex.current += 1;
                 letterIndex.current = 0;
             }
+            else if(!/^[a-zA-Z]$/.test(e.key)){
+                null
+            }
             else if(letterIndex.current >= currentWord.length){
-                if(/^[a-zA-Z]$/.test(e.key) && overflow < MAXOVERFLOW){
+                if(overflow < MAXOVERFLOW){
                     words.current[wordIndex.current].push(e.key)
                 }
             }
@@ -60,6 +65,12 @@ function MainText() {
             setCorrectList(arr)
         }
 
+        let span = document.querySelector(`#id${wordIndex.current}-${letterIndex.current}`)
+        if(span){
+            let rect = span.getBoundingClientRect()
+            currentLocation.current = {x:rect.x+'px', y:rect.y+'px'}
+        }
+
         document.addEventListener('keydown', HandleKeyDown)
         return () => document.removeEventListener('keydown', HandleKeyDown)
     },[correctList])
@@ -69,11 +80,14 @@ function MainText() {
 
 
   return (
+    <>
+    <Cursor currentLocation={currentLocation.current}/>
     <section id="main">
         {words.current.map((value, i)=>(
             <Word word={value} letterCorrectArr={correctList[i]} wordIndex={i} key={"word-"+i}/>
         ))}
     </section>
+    </>
   )
 }
 
