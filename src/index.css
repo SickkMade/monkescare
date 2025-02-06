@@ -10,6 +10,7 @@
 
 body{
   margin:0;
+  overflow:hidden;
 }
 
 #center{
@@ -96,6 +97,21 @@ footer{
   padding-left:1rem;
 }
 
+ #main{
+  width:75%;
+  height:35%;
+  display:flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  font-size:2rem;
+  overflow-y:hidden;
+ }
+.word--char.typed{
+  color:lime;
+}
+.word--char.incorrect{
+  color:red;
+}
 
 
 @media (width >= 1100px){
