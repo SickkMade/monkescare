@@ -28,30 +28,32 @@ function MainText() {
                 console.error("correct list is unset")
                 return
             }
-            console.log(letterIndex.current +' '+ correctList[wordIndex.current].length)
             let arr = [...correctList]
+            let currentWord = arr[wordIndex.current]
+            let overflow = words.current[wordIndex.current].length - currentWord.length
             if(e.key === 'Backspace'){
-                if(letterIndex.current > 0){
+                if(currentWord.length < words.current[wordIndex.current].length){
+                    words.current[wordIndex.current].pop()
+                }
+                else if(letterIndex.current > 0){
                     arr[wordIndex.current][letterIndex.current-1] = 0;
                     letterIndex.current -= 1;
                 }
-                
             }
-            else if(letterIndex.current > correctList[wordIndex.current].length){
-                null;
-            }
-            else if(e.key === ' ' && letterIndex.current == words.current[wordIndex.current].length){
+            else if(e.key === ' ' && letterIndex.current == currentWord.length){
                 wordIndex.current += 1;
                 letterIndex.current = 0;
             }
-            else if(letterIndex.current >= words.current[wordIndex.current].length && /^[a-zA-Z]$/.test(e.key)){
-                words.current[words.current[wordIndex.current].push(e.key)]
+            else if(letterIndex.current >= currentWord.length){
+                if(/^[a-zA-Z]$/.test(e.key) && overflow < MAXOVERFLOW){
+                    words.current[wordIndex.current].push(e.key)
+                }
             }
-            else if(e.key === words.current[wordIndex.current][letterIndex.current]){
+            else if(letterIndex.current <= currentWord.length && e.key === words.current[wordIndex.current][letterIndex.current]){
                 arr[wordIndex.current][letterIndex.current] = 1;
                 letterIndex.current += 1
             }
-            else{
+            else if(letterIndex.current <= currentWord.length){
                 arr[wordIndex.current][letterIndex.current] = 2;
                 letterIndex.current += 1
             }
