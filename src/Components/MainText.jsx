@@ -13,7 +13,7 @@ function MainText() {
     const [cursorIndex, setCursorIndex] = useState(0)
     const [isShowTime, setIsShowTime] = useState(false);
 
-    const containerRef = useRef(null);
+    const textContainerRef = useRef(null);
     const videoRef = useRef(null);
 
     const CreateAndSetNewWordList = () => {
@@ -94,6 +94,10 @@ function MainText() {
     }, [cursorIndex])
     useEffect(() => {
         CreateAndSetNewWordList();
+
+        const rect = textContainerRef.current.getBoundingClientRect();
+        currentLocation.current = { x: rect.left + 'px', y: rect.y + 'px' };
+
         setCursorIndex(prevValue => prevValue + 1); //force reflow is craaaaaaazy
     }, [])
 
@@ -130,12 +134,12 @@ function MainText() {
     return (
         <>
             <Cursor currentLocation={currentLocation.current} />
-            <section id="main">
+            <section id="main" ref={textContainerRef}>
                 {words.current.map((value, i) => (
                     <Word word={value} letterCorrectArr={correctList.current[i]} wordIndex={i} key={"word-" + i} />
                 ))}
             </section>
-            <div ref={containerRef} className={isShowTime ? 'showtime' : ''}>
+            <div className={isShowTime ? 'showtime' : ''}>
                 <video
                     ref={videoRef}
                     id="app--video"
