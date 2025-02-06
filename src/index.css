@@ -12,6 +12,7 @@
 
   --cursor-x: 0px;
   --cursor-y: 0px;
+  height:100dvh;
 }
 
 body{
@@ -21,11 +22,13 @@ body{
 
 #center{
   display:flex;
-  justify-content:center;
+  justify-content:space-between;
   align-items: center;
   flex-flow:column nowrap;
-  height:100dvh;
+  height:60dvh;
   width:100dvw;
+  padding-top:10%;
+  user-select: none;
 }
 
 footer{
@@ -104,8 +107,8 @@ footer{
 }
 
  #main{
-  width:75%;
-  height:22.5%;
+  width:87.5%;
+  height:35%;
   display:flex;
   flex-flow: row wrap;
   gap: 1rem;
@@ -149,9 +152,6 @@ footer{
   left:0;
 
 }
-.showtime{
-  /* pointer-events: all; */
-}
 @keyframes blink {
   0%{
     opacity:1;
@@ -167,9 +167,17 @@ footer{
 video:fullscreen {
   cursor: none;
 }
+video::-webkit-media-controls {
+  display: none;
+}
 
 video:fullscreen:hover {
   cursor: none;
+}
+
+.showtime{
+  user-select: none;
+  cursor:none;
 }
 
 @media (width >= 1100px){

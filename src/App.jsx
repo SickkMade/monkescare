@@ -6,14 +6,12 @@ import MainText from './Components/MainText'
 function App() {
   return (
     <>
-    <header>header</header>
     <section id="center">
       <Toolbar />
       <Language />
       <MainText/>
       <RestartButton />
     </section>
-    <footer>footer</footer>
     </>
   )
 }
