@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 
 const MAXOVERFLOW = 10;
 function MainText() {
-    const currentLocation = useRef({x:0,y:0});
+    const currentLocation = useRef({x:-10000,y:0});
     const words = useRef([])
     const wordIndex = useRef(0)
     const letterIndex = useRef(0)

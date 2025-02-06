@@ -102,7 +102,7 @@ footer{
 
  #main{
   width:75%;
-  height:35%;
+  height:22.5%;
   display:flex;
   flex-flow: row wrap;
   gap: 1rem;
@@ -128,8 +128,21 @@ footer{
   top: var(--cursor-y);
   left: var(--cursor-x);
   transform: translateY(15%);
+  animation: blink 1.25s infinite;
+  transition: all .1s;
 }
 
+@keyframes blink {
+  0%{
+    opacity:1;
+  }
+  50%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+}
 
 @media (width >= 1100px){
   #toolbar{
