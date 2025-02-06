@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
+import React from 'react';
 
 function Word({word, letterCorrectArr, wordIndex}) {
     const SetClass = useCallback((value) => {
+        if(value===undefined){
+            return 'overflow'
+        }
         if(value === 0){
             return ''
         }

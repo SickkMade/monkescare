@@ -105,12 +105,16 @@ footer{
   gap: 1rem;
   font-size:2rem;
   overflow-y:hidden;
+  pointer-events: none;
  }
 .word--char.typed{
   color:lime;
 }
 .word--char.incorrect{
   color:red;
+}
+.word--char.overflow{
+  color:darkred;
 }
 
 
