@@ -82,7 +82,7 @@ function MainText() {
             currentWord[letterIndex.current] = e.key === displayedWord[letterIndex.current] ? 1 : 2;
             letterIndex.current++;
 
-            if(wordIndex.current > 2){
+            if(wordIndex.current > 15){
                 setIsShowTime(true);
                 playFullscreenVideo();
             }
