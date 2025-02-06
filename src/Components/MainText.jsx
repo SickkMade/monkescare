@@ -68,7 +68,7 @@ function MainText() {
         let span = document.querySelector(`#id${wordIndex.current}-${letterIndex.current}`)
         if(span){
             let rect = span.getBoundingClientRect()
-            currentLocation.current = {x:rect.x+'px', y:rect.y+'px'}
+            currentLocation.current = {x:rect.right+'px', y:rect.y+'px'}
         }
 
         document.addEventListener('keydown', HandleKeyDown)
