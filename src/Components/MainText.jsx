@@ -23,7 +23,23 @@ function MainText() {
         setCursorIndex(prevValue => prevValue +1); //force reflow is craaaaaaazy
     }
 
+    const handleCursor = (overflow) => {
+        // time out shinanigans
+        setTimeout(() => {
+            const span = document.querySelector(`#id${wordIndex.current}-${letterIndex.current + overflow}`) || document.querySelector(`#id${wordIndex.current}-${letterIndex.current + overflow - 2}`);
+            if (span) {
+                const rect = span.getBoundingClientRect();
+                if (letterIndex.current >= correctList.current[wordIndex.current].length) {
+                    currentLocation.current = { x: rect.right + 'px', y: rect.y + 'px' };
+                } else {
+                    currentLocation.current = { x: rect.left + 'px', y: rect.y + 'px' };
+                }
+                setCursorIndex(prev => prev + 1);
+            }
+        }, 0);
+    };
 
+    //WHY CALLED TWICE?
     useEffect(() => {
         const HandleKeyDown = (e) => {
             if (!correctList.current?.length) {
@@ -35,7 +51,10 @@ function MainText() {
             const wordIdx = wordIndex.current;
             const currentWord = correctList.current[wordIdx];
             const displayedWord = words.current[wordIdx];
-            const overflow = displayedWord.length - currentWord.length;
+            const overflow = words.current[wordIndex.current].length - correctList.current[wordIndex.current].length;
+            if (overflow < MAXOVERFLOW) handleCursor(overflow);
+            else if(overflow===MAXOVERFLOW && e.key === 'Backspace')handleCursor(overflow);
+            //IVE PLAYED THESE GAMES BEFORE
 
             if (e.key === 'Backspace') {
                 if (overflow > 0) displayedWord.pop();
@@ -59,21 +78,13 @@ function MainText() {
             currentWord[letterIndex.current] = e.key === displayedWord[letterIndex.current] ? 1 : 2;
             letterIndex.current++;
         };
-
-        let span = document.querySelector(`#id${wordIndex.current}-${letterIndex.current}`)
-        if (span) {
-            let rect = span.getBoundingClientRect()
-            if (letterIndex.current >= correctList.current[wordIndex.current].count) {
-                currentLocation.current = { x: rect.right + 'px', y: rect.y + 'px' }
-            } else {
-                currentLocation.current = { x: rect.left + 'px', y: rect.y + 'px' }
-            }
-        }
+        
         document.addEventListener('keydown', HandleKeyDown)
         return () => document.removeEventListener('keydown', HandleKeyDown)
     }, [cursorIndex])
     useEffect(() => {
         CreateAndSetNewWordList();
+        setCursorIndex(prevValue => prevValue +1); //force reflow is craaaaaaazy
     }, [])
 
 
