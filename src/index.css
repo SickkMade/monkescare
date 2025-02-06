@@ -3,6 +3,9 @@
   --bg-color: #323437;
   --highlight-color: #d1d0c5;
   --sub-alt-color: #2c2e31;
+  --correct-letter-color: #d1d0c5;
+  --incorrect-letter-color: #ca4754;
+  --error-extra-color: #7e2a33;
   color:var(--sub-color);
   background-color: var(--bg-color);
   font-family:'Roboto Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -111,14 +114,15 @@ footer{
   pointer-events: none;
  }
 .word--char.typed{
-  color:lime;
+  color:var(--correct-letter-color);
 }
 .word--char.incorrect{
-  color:red;
+  color:var(--incorrect-letter-color);
 }
 .word--char.overflow{
-  color:darkred;
+  color:var(--error-extra-color);
 }
+
 #main--cursor{
   height:2rem;
   border-radius: 1rem;
@@ -133,10 +137,17 @@ footer{
 }
 
 #app--video{
-  width:100dvw;
+  height:0;
+  position:absolute;
+  pointer-events: none;
 
-  z-index: 100;
+  opacity:1;
+  top:0;
+  left:0;
 
+}
+.showtime{
+  /* pointer-events: all; */
 }
 @keyframes blink {
   0%{

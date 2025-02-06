@@ -135,7 +135,7 @@ function MainText() {
                     <Word word={value} letterCorrectArr={correctList.current[i]} wordIndex={i} key={"word-" + i} />
                 ))}
             </section>
-            {isShowTime && <div ref={containerRef} className={isShowTime ? 'showtime' : ''}>
+            <div ref={containerRef} className={isShowTime ? 'showtime' : ''}>
                 <video
                     ref={videoRef}
                     id="app--video"
@@ -144,7 +144,7 @@ function MainText() {
                     <source src="https://github.com/SickkMade/monkescare/raw/refs/heads/main/public/video1.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
-            </div>}
+            </div>
         </>
     )
 }
