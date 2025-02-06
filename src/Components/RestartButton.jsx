@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { VscDebugRestart } from "react-icons/vsc";
 
 function RestartButton() {
