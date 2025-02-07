@@ -2,11 +2,13 @@ import allWords from '../json/enlish.json'
 import Word from './Word'
 import Cursor from './Cursor';
 import { useEffect, useState, useRef } from 'react'
+import Timer from './Timer';
 
 const MAXOVERFLOW = 10;
 function MainText() {
     const currentLocation = useRef({ x: -10000, y: 0 });
     const words = useRef([])
+    const isTimer = useRef(false);
     const wordIndex = useRef(0)
     const letterIndex = useRef(0)
     const correctList = useRef([])
@@ -83,6 +85,8 @@ function MainText() {
 
             if (!/^[a-zA-Z]$/.test(e.key)) return;
 
+            isTimer.current = true;
+
             if (letterIndex.current >= currentWord.length) {
                 if (overflow < MAXOVERFLOW) displayedWord.push(e.key);
                 return;
@@ -143,6 +147,7 @@ function MainText() {
     return (
         <>
             <Cursor currentLocation={currentLocation.current} />
+            {isTimer.current && <Timer func={playFullscreenVideo}/>}
             <section id="main" ref={textContainerRef}>
                 {words.current.map((value, i) => (
                     <Word word={value} letterCorrectArr={correctList.current[i]} wordIndex={i} key={"word-" + i} />

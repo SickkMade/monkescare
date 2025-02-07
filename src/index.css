@@ -5,6 +5,7 @@
   --sub-alt-color: #2c2e31;
   --correct-letter-color: #d1d0c5;
   --incorrect-letter-color: #ca4754;
+  --main-color: #e2b714;
   --error-extra-color: #7e2a33;
   color:var(--sub-color);
   background-color: var(--bg-color);
@@ -131,14 +132,13 @@ footer{
 }
 
 #main--cursor{
-  height:2rem;
-  border-radius: 1rem;
-  width:.15rem;
-  background-color:yellow;
+  height:2.5rem;
+  border-radius: 1.25rem;
+  width:.2rem;
+  background-color:var(--main-color);
   position:absolute;
   top: var(--cursor-y);
   left: var(--cursor-x);
-  transform: translateY(15%);
   animation: blink 1.25s infinite;
   transition: all .1s;
 }
@@ -226,6 +226,14 @@ video:fullscreen:hover {
   font-size: .325em;
   line-height: .325em;
   color: var(--sub-color);
+}
+
+.app--timer{
+  position:absolute;
+  top:35%;
+  left:6%;
+  font-size:2rem;
+  color: var(--main-color);
 }
 
 @media (width >= 1100px){
