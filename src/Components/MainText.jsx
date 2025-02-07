@@ -34,7 +34,6 @@ function MainText() {
             const span = document.querySelector(`#id${wordIndex.current}-${letterIndex.current + overflow}`) || 
             document.querySelector(`#id${wordIndex.current}-${letterIndex.current + overflow - 1}`)||
             document.querySelector(`#id${wordIndex.current}-${letterIndex.current + overflow - 2}`);
-            console.log(span)
             if (span) {
                 const rect = span.getBoundingClientRect();
                 if (letterIndex.current >= correctList.current[wordIndex.current].length) {

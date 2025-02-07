@@ -9,6 +9,7 @@
   color:var(--sub-color);
   background-color: var(--bg-color);
   font-family:'Roboto Mono', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-variant: no-common-ligatures;
 
   --cursor-x: 0px;
   --cursor-y: 0px;
@@ -184,6 +185,47 @@ video:fullscreen:hover {
   position:absolute;
   top:5%;
   left:5%;
+  pointer-events: none;
+  cursor: pointer;
+  /* font-family: Lexend Deca,sans-serif; */
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .5rem; 
+  transition: none;
+  text-decoration: none;
+  color: var(--text-color);
+  padding: .35rem .25rem;
+  margin-left: -.25rem;
+  margin-right: -.25rem;
+  white-space: nowrap;
+}
+.logo--icon{
+  width: 2.5rem;
+  display: grid;
+  align-items: center;
+  background-color: transparent;
+}
+.logo--text{
+  color: var(--correct-letter-color);
+  white-space: nowrap;
+  box-sizing: border-box;
+  margin: .67em 0;
+  position: relative;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: unset;
+  margin-block-start: unset;
+  margin-block-end: unset;
+  margin-top: -.23em;
+}
+.logo--top{
+  font-weight: unset;
+  box-sizing: border-box;
+  position: absolute;
+  left: .35em;
+  font-size: .325em;
+  line-height: .325em;
+  color: var(--sub-color);
 }
 
 @media (width >= 1100px){
@@ -191,3 +233,4 @@ video:fullscreen:hover {
     font-size:.9rem;
   }
 }
+
