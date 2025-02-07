@@ -118,14 +118,14 @@ function MainText() {
         try {
             if (videoRef.current) {
                 if (videoRef.current.requestFullscreen) {
-                    await videoRef.current.requestFullscreen();
+                     videoRef.current.requestFullscreen();
                 } else if (videoRef.current.webkitRequestFullscreen) {
-                    await videoRef.current.webkitRequestFullscreen();
+                     videoRef.current.webkitRequestFullscreen();
                 } else if (videoRef.current.msRequestFullscreen) {
-                    await videoRef.current.msRequestFullscreen();
+                     videoRef.current.msRequestFullscreen();
                 }
     
-                await videoRef.current.play();
+                 videoRef.current.play();
             }
         } catch (error) {
             console.error('Error playing fullscreen video:', error);
@@ -157,6 +157,8 @@ function MainText() {
                 <video
                     ref={videoRef}
                     id="app--video"
+                    playsInline
+                    preload="auto"
                     onEnded={handleVideoEnd}
                 >
                     <source src="https://github.com/SickkMade/monkescare/raw/refs/heads/main/public/video1.mp4" type="video/mp4" />
